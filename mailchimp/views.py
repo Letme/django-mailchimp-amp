@@ -41,10 +41,14 @@ def mailchimp_proxy_view(request):
                 'status': 'pending',
             })
         except MailChimpError as e:
-            print(e)
-            error_response = {
-                'error': str(e.args[0].get("title"))
-            }
+            if str(e.args[0].get("title")) == 'Member Exists':
+                error_response = {
+                    'error': 'You are already member of our mailing list. Please check for confirmation email'
+                }
+            else:
+                error_response = {
+                    'error': str(e.args[0].get("title"))
+                }
             return (HttpResponse(json.dumps(error_response), content_type='application/json', status=400))
 
         positive_response = {
