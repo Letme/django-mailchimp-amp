@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import json
 import logging
 import os
@@ -36,14 +37,29 @@ def mailchimp_proxy_view(request):
         try:
             lists = mailchimp.lists.all()
             logger.info(lists)
+            email_hash = hashlib.md5(email.encode())
             members = mailchimp.lists.members.create(settings.MAILCHIMP_LISTID, {
                 'email_address': email,
                 'status': 'pending',
             })
+            positive_response = {
+                'body': ''
+            }
+            return (JsonResponse(positive_response))
         except MailChimpError as e:
-            if str(e.args[0].get("title")) == 'Member Exists':
+            print(str(e))
+            error_title = str(e.args[0].get("title"))
+            if error_title == 'Member Exists':
+                members = mailchimp.lists.members.update(settings.MAILCHIMP_LISTID, email_hash.hexdigest(), {
+                    'email_address': email,
+                    'status': 'pending',
+                })
                 error_response = {
-                    'error': 'You are already member of our mailing list. Please check for confirmation email'
+                    'error': 'You are already member of our mailing list. We resent you the for confirmation email now.'
+                }
+            elif error_title == 'Forgotten Email Not Subscribed':
+                error_response = {
+                    'error': str(e.args[0].get("detail"))
                 }
             else:
                 error_response = {
@@ -51,9 +67,5 @@ def mailchimp_proxy_view(request):
                 }
             return (HttpResponse(json.dumps(error_response), content_type='application/json', status=400))
 
-        positive_response = {
-            'body': ''
-        }
-        return (JsonResponse(positive_response))
     else:
         return (HttpResponse(status=400))
