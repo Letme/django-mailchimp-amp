@@ -29,3 +29,13 @@ form.amp-form-submit-success > mc_embed_signup_scroll {
 	display: none
 }
 
+#mc_embed_signup_scroll p {
+	color: #B410BA;
+	text-align: center;
+	font-weight: bold;
+}
+
+#mc_embed_signup_error p, #mc_embed_signup_success p, #mc_embed_signup_response p {
+	color: #808080;
+	text-align: center;
+}
