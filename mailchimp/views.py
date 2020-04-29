@@ -18,10 +18,30 @@ from requests_toolbelt.multipart import decoder
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+def mailchimp_parse_settings():
+    '''
+    Set defaults for the settings in case the struct does not have all defined or some are missing
+    '''
+    view_settings = {}
+
+    # here we go
+    try:
+        view_settings['success_message'] = settings.MAILCHIMP_MESSAGES['success_message']
+    except AttributeError as e:
+        view_settings['success_message'] = 'Success! Thanks for subscribing to our newsletter! Please check your email to confirm subscription!'
+    try:
+        view_settings['error_member_exists'] = settings.MAILCHIMP_MESSAGES['error_member_exists']
+    except AttributeError as e:
+        view_settings['error_member_exists'] = 'You are already member of our mailing list. We resent you the for confirmation email now.'
+
+    return view_settings
+
 def mailchimp_proxy_view(request):
     '''
     We want to bypass the undefined CORS policy on the MailChimp servers, so this is a proxy view which does that
     '''
+    view_settings = mailchimp_parse_settings()
+
     if request.method == 'POST':
         mailchimp = MailChimp(mc_api=settings.MAILCHIMP_API, mc_user=settings.MAILCHIMP_USERNAME, timeout=10.0)
 
@@ -43,7 +63,7 @@ def mailchimp_proxy_view(request):
                 'status': 'pending',
             })
             positive_response = {
-                'body': ''
+                'message': view_settings['success_message']
             }
             return (JsonResponse(positive_response))
         except MailChimpError as e:
@@ -55,7 +75,7 @@ def mailchimp_proxy_view(request):
                     'status': 'pending',
                 })
                 error_response = {
-                    'error': 'You are already member of our mailing list. We resent you the for confirmation email now.'
+                    'error': view_settings['error_member_exists']
                 }
             elif error_title == 'Forgotten Email Not Subscribed':
                 error_response = {
