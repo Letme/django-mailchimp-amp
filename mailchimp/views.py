@@ -18,24 +18,25 @@ from requests_toolbelt.multipart import decoder
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+# define defaults
+default_settings = {
+    'success_message': 'Success! Thanks for subscribing to our newsletter! Please check your email to confirm subscription!',
+    'error_member_exists': 'You are already member of our mailing list. We resent you the for confirmation email now.',
+}
+
 def mailchimp_parse_settings():
     '''
     Set defaults for the settings in case the general settings do not have all defined values or some are missing
     '''
-    # define defaults
-    default_settings = {
-        'success_message': 'Success! Thanks for subscribing to our newsletter! Please check your email to confirm subscription!',
-        'error_member_exists': 'You are already member of our mailing list. We resent you the for confirmation email now.',
-    }
-
+    merged_settings = {}
     # here we go
     for key in default_settings.keys():
         try:
-            default_settings[key] = settings.MAILCHIMP_MESSAGES[key]
-        except KeyError as e:
-            pass
+            merged_settings[key] = settings.MAILCHIMP_MESSAGES[key]
+        except (KeyError, AttributeError) as e:
+            merged_settings[key] = default_settings[key]
 
-    return default_settings
+    return merged_settings
 
 def mailchimp_proxy_view(request):
     '''
