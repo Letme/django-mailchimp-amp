@@ -19,7 +19,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 # define defaults
-default_settings = {
+MAILCHIMP_DEFAULT_MESSAGES = {
     'success_message': 'Success! Thanks for subscribing to our newsletter! Please check your email to confirm subscription!',
     'error_member_exists': 'You are already member of our mailing list. We resent you the for confirmation email now.',
 }
@@ -30,11 +30,11 @@ def mailchimp_parse_settings():
     '''
     merged_settings = {}
     # here we go
-    for key in default_settings.keys():
+    for key in MAILCHIMP_DEFAULT_MESSAGES.keys():
         try:
             merged_settings[key] = settings.MAILCHIMP_MESSAGES[key]
         except (KeyError, AttributeError) as e:
-            merged_settings[key] = default_settings[key]
+            merged_settings[key] = MAILCHIMP_DEFAULT_MESSAGES[key]
 
     return merged_settings
 

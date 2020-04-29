@@ -12,7 +12,7 @@ class SettingsParseTestCase(TestCase):
         application settings
         '''
         test_settings = views.mailchimp_parse_settings()
-        self.assertEqual(test_settings['success_message'], views.default_settings['success_message'])
+        self.assertEqual(test_settings['success_message'], views.MAILCHIMP_DEFAULT_MESSAGES['success_message'])
 
     @override_settings(MAILCHIMP_MESSAGES = { 'success_message': 'Test' })
     def test_overwrite_default_success_message(self):
@@ -22,7 +22,7 @@ class SettingsParseTestCase(TestCase):
         '''
         test_settings = views.mailchimp_parse_settings()
         self.assertEqual(test_settings['success_message'], 'Test')
-        self.assertEqual(test_settings['error_member_exists'], views.default_settings['error_member_exists'])
+        self.assertEqual(test_settings['error_member_exists'], views.MAILCHIMP_DEFAULT_MESSAGES['error_member_exists'])
 
     def test_confirm_default_error_member_exists(self):
         '''
@@ -30,7 +30,7 @@ class SettingsParseTestCase(TestCase):
         not defined in application settings
         '''
         test_settings = views.mailchimp_parse_settings()
-        self.assertEqual(test_settings['error_member_exists'], views.default_settings['error_member_exists'])
+        self.assertEqual(test_settings['error_member_exists'], views.MAILCHIMP_DEFAULT_MESSAGES['error_member_exists'])
 
     @override_settings(MAILCHIMP_MESSAGES = { 'error_member_exists': 'Test1' })
     def test_overwrite_default_error_member_exists(self):
@@ -40,6 +40,6 @@ class SettingsParseTestCase(TestCase):
         '''
         test_settings = views.mailchimp_parse_settings()
         self.assertEqual(test_settings['error_member_exists'], 'Test1')
-        self.assertEqual(test_settings['success_message'], views.default_settings['success_message'])
+        self.assertEqual(test_settings['success_message'], views.MAILCHIMP_DEFAULT_MESSAGES['success_message'])
 
 
