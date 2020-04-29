@@ -20,21 +20,22 @@ logger.setLevel(logging.INFO)
 
 def mailchimp_parse_settings():
     '''
-    Set defaults for the settings in case the struct does not have all defined or some are missing
+    Set defaults for the settings in case the general settings do not have all defined values or some are missing
     '''
-    view_settings = {}
+    # define defaults
+    default_settings = {
+        'success_message': 'Success! Thanks for subscribing to our newsletter! Please check your email to confirm subscription!',
+        'error_member_exists': 'You are already member of our mailing list. We resent you the for confirmation email now.',
+    }
 
     # here we go
-    try:
-        view_settings['success_message'] = settings.MAILCHIMP_MESSAGES['success_message']
-    except AttributeError as e:
-        view_settings['success_message'] = 'Success! Thanks for subscribing to our newsletter! Please check your email to confirm subscription!'
-    try:
-        view_settings['error_member_exists'] = settings.MAILCHIMP_MESSAGES['error_member_exists']
-    except AttributeError as e:
-        view_settings['error_member_exists'] = 'You are already member of our mailing list. We resent you the for confirmation email now.'
+    for key in default_settings.keys():
+        try:
+            default_settings[key] = settings.MAILCHIMP_MESSAGES[key]
+        except KeyError as e:
+            pass
 
-    return view_settings
+    return default_settings
 
 def mailchimp_proxy_view(request):
     '''
