@@ -1,3 +1,5 @@
+#_*_coding: utf-8_*_
+
 from django.test import TestCase, override_settings
 from . import views
 
