@@ -3,5 +3,5 @@
 from django.apps import AppConfig
 
 
-class MailchimpConfig(AppConfig):
-    name = 'mailchimp'
+class DjangoMailchimpAmpConfig(AppConfig):
+    name = 'django-mailchimp-amp'
