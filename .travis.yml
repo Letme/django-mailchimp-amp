@@ -28,11 +28,11 @@ jobs:
     - stage: deploy
       python: 3.7
       env:
-        - TOXENV=py37-django30,py37-djangomaster,py37-codecov
+        - TOXENV=docs,py37-codecov
       # Deploy: disable jekyll in order to publish subfolders with leading underscores as well to pages
       before_deploy:
-        - mkdir -p example/_build/html/
-        - touch example/_build/html/.nojekyll
+        - mkdir -p build/
+        - touch build/.nojekyll
       deploy:
         # production pypi
         - provider: pypi
@@ -47,7 +47,7 @@ jobs:
         # publish example: build by tox, published to pages
         - provider: pages
           skip_cleanup: true
-          local_dir: example/_build/html/
+          local_dir: build/
           github_token: $GITHUB_TOKEN
           on:
             branch: master
@@ -60,8 +60,6 @@ before_install:
 
 install:
   - pip install tox
-  - pip install coverage
-  - pip install python-decouple
   - virtualenv --version
   - easy_install --version
   - pip --version
