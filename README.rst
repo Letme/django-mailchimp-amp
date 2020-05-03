@@ -6,8 +6,8 @@
     :target: https://badge.fury.io/py/django-mailchimp-amp
     :alt: Pypi packaged release
 
-.. image:: https://travis-ci.org/letme/django-mailchimp-amp.svg?branch=master
-    :target: https://travis-ci.org/letme/django-mailchimp-amp
+.. image:: https://travis-ci.com/letme/django-mailchimp-amp.svg?branch=master
+    :target: https://travis-ci.com/letme/django-mailchimp-amp
     :alt: Build status
 
 .. image:: https://img.shields.io/badge/Documentation-published-brightgreen.svg
