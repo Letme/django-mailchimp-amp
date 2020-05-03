@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
-	path('', views.mailchimp_proxy_view),
+    path('', views.mailchimp_proxy_view),
 ]

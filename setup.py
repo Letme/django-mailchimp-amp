@@ -31,7 +31,7 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
     ],
     keywords=["django", "mailchimp", "amp"],
-    install_requires=["mailchimp3>=3.0.13", "Django >= 3.0","requests-toolbelt",],
+    install_requires=["mailchimp3>=3.0.13", "Django >= 3.0",],
     setup_requires=["nose", "readme", "setuptools_scm"],
     tests_require=["Django", "requests >= 2.19", "coverage"],
     test_suite="nose.collector",

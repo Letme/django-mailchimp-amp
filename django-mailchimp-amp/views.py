@@ -1,21 +1,15 @@
 # -*- coding: utf-8 -*-
 
-import base64
 import hashlib
 import json
 import logging
-import os
 from django.conf import settings
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
-from django.views.decorators.csrf import requires_csrf_token
-from django.template import RequestContext
 from mailchimp3 import MailChimp
 from mailchimp3.mailchimpclient import MailChimpError
-from requests_toolbelt.multipart import decoder
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
