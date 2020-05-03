@@ -11,11 +11,8 @@ setup(
     author_email="crt@the-mori.com",
     url="https://github.com/letme/django-mailchimp-amp",
     description="Django app for easy embeding of MailChimp subscription form in AMP page",
-    long_description="\n".join(
-        [
-            open("README.rst", encoding="utf-8").read(),
-        ]
-    ),
+    long_description_content_type="text/x-rst",
+    long_description=open("README.rst", encoding="utf-8").read(),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
