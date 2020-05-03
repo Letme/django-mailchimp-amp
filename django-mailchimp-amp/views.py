@@ -16,32 +16,40 @@ logger.setLevel(logging.INFO)
 
 # define defaults
 MAILCHIMP_DEFAULT_MESSAGES = {
-    'success_message': 'Success! Thanks for subscribing to our newsletter! Please check your email to confirm subscription!',
-    'error_member_exists': 'You are already member of our mailing list. We resent you the for confirmation email now.',
+    'success_message': 'Success! Thanks for subscribing to our newsletter!\
+            Please check your email to confirm subscription!',
+    'error_member_exists': 'You are already member of our mailing list.\
+            We resent you the for confirmation email now.',
 }
+
 
 def mailchimp_parse_settings():
     '''
-    Set defaults for the settings in case the general settings do not have all defined values or some are missing
+    Set defaults for the settings in case the general settings do not have all
+    defined values or some are missing
     '''
     merged_settings = {}
     # here we go
     for key in MAILCHIMP_DEFAULT_MESSAGES.keys():
         try:
             merged_settings[key] = settings.MAILCHIMP_MESSAGES[key]
-        except (KeyError, AttributeError) as e:
+        except (KeyError, AttributeError) as e:  # noqa: F841
             merged_settings[key] = MAILCHIMP_DEFAULT_MESSAGES[key]
 
     return merged_settings
 
+
 def mailchimp_proxy_view(request):
     '''
-    We want to bypass the undefined CORS policy on the MailChimp servers, so this is a proxy view which does that
+    We want to bypass the undefined CORS policy on the MailChimp servers, so
+    this is a proxy view which does that
     '''
     view_settings = mailchimp_parse_settings()
 
     if request.method == 'POST':
-        mailchimp = MailChimp(mc_api=settings.MAILCHIMP_API, mc_user=settings.MAILCHIMP_USERNAME, timeout=10.0)
+        mailchimp = MailChimp(mc_api=settings.MAILCHIMP_API,
+                              mc_user=settings.MAILCHIMP_USERNAME,
+                              timeout=10.0)
 
         email = request.POST.get('EMAIL')
         try:
@@ -50,13 +58,14 @@ def mailchimp_proxy_view(request):
             error_response = {
                 'error': str(e)
             }
-            return HttpResponse(json.dumps(error_response), content_type='application/json', status=400)
+            return HttpResponse(json.dumps(error_response),
+                                content_type='application/json', status=400)
 
         try:
             lists = mailchimp.lists.all()
             logger.info(lists)
             email_hash = hashlib.md5(email.encode())
-            members = mailchimp.lists.members.create(settings.MAILCHIMP_LISTID, {
+            mailchimp.lists.members.create(settings.MAILCHIMP_LISTID, {
                 'email_address': email,
                 'status': 'pending',
             })
@@ -68,10 +77,11 @@ def mailchimp_proxy_view(request):
             print(str(e))
             error_title = str(e.args[0].get("title"))
             if error_title == 'Member Exists':
-                members = mailchimp.lists.members.update(settings.MAILCHIMP_LISTID, email_hash.hexdigest(), {
-                    'email_address': email,
-                    'status': 'pending',
-                })
+                mailchimp.lists.members.update(settings.MAILCHIMP_LISTID,
+                                               email_hash.hexdigest(), {
+                                                   'email_address': email,
+                                                   'status': 'pending',
+                                               })
                 error_response = {
                     'error': view_settings['error_member_exists']
                 }
@@ -83,7 +93,8 @@ def mailchimp_proxy_view(request):
                 error_response = {
                     'error': str(e.args[0].get("title"))
                 }
-            return (HttpResponse(json.dumps(error_response), content_type='application/json', status=400))
+            return (HttpResponse(json.dumps(error_response),
+                                 content_type='application/json', status=400))
 
     else:
         return (HttpResponse(status=400))
