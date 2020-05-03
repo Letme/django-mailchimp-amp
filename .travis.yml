@@ -33,6 +33,8 @@ jobs:
       before_deploy:
         - mkdir -p build/
         - touch build/.nojekyll
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
       deploy:
         # production pypi
         - provider: pypi
