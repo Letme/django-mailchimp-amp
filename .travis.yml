@@ -37,9 +37,9 @@ jobs:
         # production pypi
         - provider: pypi
           distributions: sdist bdist_wheel
-          user: Letme
+          user: "__token__"
           password:
-              secure: "ZhogUet19V4cfbIXmlEepK5PemHiIl6UQwjleCEh9sTfmxgYiAMsDHIvSHSDArXPiFJ9BZlBX4vBmhGEyrUp58I+Rn4V7nm3Ml+KB0pQTvoUruNM2uA7fmBT76i2OGSuDl1pc3Ap2ajTNWDYltBJN7o0/l9QsgC65oe76Uvj4kPJCcfp2xT3e7uw/bt1JLegQGYChOUG7uz9HnsbwZ9eejx5Ogxrmeb42/5cFAokkC4eUs9rYuaRuNLzfNzStBE1QWRXQRqDgfw5FwFnkXYrNwetqjcnHWa5+7ljyKg36jcWDKDeHWXdThGJm8pLVaKthMv/+GgPoUn65Y+aw89bXTkdfCzWaye9GEo2wkRi7nziRFNsm5rNA2eKHjCcmtk8uPwszyMQo9VQ2aeeQ8cnAK6NBR2U6OytAyIb9ptXS/MHECAB0Elo71QE9gyFesWGjVOLbSUy91ZA0pifZlFMmBGd60Bt7MlNUGpFpuRq7Rr8n11Tdr6BIycKbMYhIahwQeCq47pgv9X/RQRbfpp9GpRPY+/IT24mYDIhzKzWSBRXWGPEY/fBIwG7AM88COsNXejmn8EgwYQCjSdLxLxsVv5LRrD4B6dOLb920MUR+sMNWCw2AmPNckV6LIgw5/r44yOOSYGva2cgJk66BQ4DaFrJMADTEyO/NSg6jhZocD8="
+              secure: "bQyibLbBDHeyKfqYADNamOoQ5I5EfAdeuCM758kRb6KKJXp+oAoE983pofj9xTe/iDsoPPnD7GMqBVgl6TZKJtM0oaacMOJguCH3uJg31uNaDemtCaQAwUc5zbH8gxgOVlj6+nEeYshF4xNKTMWG0kW4DHxCd8oMM6l7hak4+woN9TULs+S/U4iw3aYJMcZ0mwQioP023fVSj+8SDfplYY+RwUPFlxx6nfs9euNkwL+lSjf49ObZxJvrGdvPph6YDpD9CMsYW2WsNc1ZXxqHEgX2BqTOKwm1DlG+fKjRalqS5G79WnXa+FXM5lwMfSfl9lBDor9098IAb2CMXnEaLaZtQmoGk0akSgZiX6uJyJyunC7krChZVIIAENZtxiP8S9ALmY7EWzkkK96ZUvMhp9MA4OIRhAaV0JBUQKR2LRiBoxTNoiPlgYmYik45qy9mly/uS71YlbVoCD9HaJtF8m9BOn9gWUqfsVhU0mTh/jLinLydthymqdM57vq69mB1McEGOScdOvFFpDkHtMgRcNY2DtaeG+d5KRovYHSrajAWWBYsvqM8e+NqPkCzPU8XkORa3QJVVtz7gZKP+rWwypeaZe7zNOZ16K4shI8fYV3LcJTlEXYJHSbXKazTwvbDeleC2rvp+HmyuHn+lZBaTPsq2N+xxFe58y8UXxlWoEk="
           on:
             branch: master
             python: 3.7
