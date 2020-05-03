@@ -1,4 +1,4 @@
-#_*_coding: utf-8_*_
+# -*- coding: utf-8 -*-
 
 from django.urls import path, include
 from . import views
