@@ -8,3 +8,6 @@ exclude tox.ini
 exclude .travis.yml
 exclude .pylintrc
 exclude .coverage
+
+# added by check_manifest.py
+recursive-include django_mailchimp_amp *.py
