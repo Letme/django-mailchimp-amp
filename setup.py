@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 setup(
     name="django-mailchimp-amp",
     packages=find_packages(),
-    package_data={"mailchimp-amp": ["templates/mailchimp/*.html", "templates/mailchimp/*.css"]},
+    package_data={"django_mailchimp_amp": ["templates/mailchimp/*.html", "templates/mailchimp/*.css"]},
     use_scm_version=True,
     author="Crt Mori",
     author_email="crt@the-mori.com",

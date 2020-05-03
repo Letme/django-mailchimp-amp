@@ -1,8 +1,8 @@
 include README.rst
 include LICENSE
 include *.py
-recursive-include django-mailchimp-amp/templates *.html
-recursive-include django-mailchimp-amp/templates *.css
+recursive-include django_mailchimp_amp/templates *.html
+recursive-include django_mailchimp_amp/templates *.css
 
 exclude tox.ini
 exclude .travis.yml
