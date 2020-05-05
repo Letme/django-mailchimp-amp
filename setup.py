@@ -14,7 +14,7 @@ setup(
     long_description_content_type="text/x-rst",
     long_description=open("README.rst", encoding="utf-8").read(),
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
         "Environment :: Plugins",
         "Framework :: Django",
