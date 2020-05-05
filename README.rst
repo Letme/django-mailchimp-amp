@@ -19,11 +19,11 @@
     :alt: Code Coverage
 
 .. image:: https://api.codeclimate.com/v1/badges/a8819fd0104e5cd8ee08/maintainability
-   :target: https://codeclimate.com/github/Letme/django-mailchimp-amp/maintainability
-   :alt: Maintainability
+    :target: https://codeclimate.com/github/Letme/django-mailchimp-amp/maintainability
+    :alt: Maintainability
 
-.. image:: https://requires.io/github/letme/django-mailchimp-amp/requirements.svg?branch=master
-    :target: https://requires.io/github/letme/django-mailchimp-amp/requirements/?branch=master
+.. image:: https://requires.io/github/Letme/django-mailchimp-amp/requirements.svg?branch=master
+    :target: https://requires.io/github/Letme/django-mailchimp-amp/requirements/?branch=master
     :alt: Requirements Status
 
 .. image:: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
