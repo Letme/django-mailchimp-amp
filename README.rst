@@ -18,13 +18,9 @@
     :target: https://codecov.io/gh/letme/django-mailchimp-amp
     :alt: Code Coverage
 
-.. image:: https://codeclimate.com/github/letme/django-mailchimp-amp/badges/gpa.svg
-    :target: https://codeclimate.com/github/letme/django-mailchimp-amp
-    :alt: Code Climate Status
-
-.. image:: https://codeclimate.com/github/letme/django-mailchimp-amp/badges/issue_count.svg
-    :target: https://codeclimate.com/github/letme/django-mailchimp-amp
-    :alt: Issue Count
+.. image:: https://api.codeclimate.com/v1/badges/a8819fd0104e5cd8ee08/maintainability
+   :target: https://codeclimate.com/github/Letme/django-mailchimp-amp/maintainability
+   :alt: Maintainability
 
 .. image:: https://requires.io/github/letme/django-mailchimp-amp/requirements.svg?branch=master
     :target: https://requires.io/github/letme/django-mailchimp-amp/requirements/?branch=master
